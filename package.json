@@ -1,0 +1,35 @@
+{
+  "name": "bigscreen-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.12.0",
+    "antd": "^4.23.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recoil": "^0.7.6",
+    "three": "^0.145.0",
+    "three-orbitcontrols": "^2.110.3",
+    "three-orbitcontrols-ts": "^0.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/three": "^0.144.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "@vitejs/plugin-react": "^2.1.0",
+    "eslint": "^8.25.0",
+    "eslint-plugin-react": "^7.31.10",
+    "typescript": "^4.6.4",
+    "unocss": "^0.45.30",
+    "vite": "^3.1.0",
+    "vite-plugin-eslint": "^1.8.1"
+  }
+}
