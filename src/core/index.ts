@@ -15,7 +15,8 @@ export function init (width:number, height:number, root:HTMLElement) {
    * far， 能看多远
    */
   camera = new THREE.PerspectiveCamera(90, width / height, 0.1, 100)
-  camera.position.set(0, 0, 3)
+  // 设置相机位置， x、y、z
+  camera.position.set(0, 0, 1)
 
   renderer = new THREE.WebGLRenderer()
   renderer.setSize(width, height)
@@ -24,14 +25,12 @@ export function init (width:number, height:number, root:HTMLElement) {
 
   new OrbitControls(camera, renderer.domElement)
 
-
   const geometry = new THREE.BoxGeometry(1,1,1)
   const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
   const cube = new THREE.Mesh( geometry, material );
   scene.add( cube );
 
   loop()
-
 }
 
 function loop() {

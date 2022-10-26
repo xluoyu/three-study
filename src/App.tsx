@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
-import {init} from './core'
+import React from 'react'
+import Pixi from './views/Pixi'
 
 function App () {
 
-  useEffect(() => {
-    init(800, 500, document.querySelector('#container')!)
-    console.log('render')
-  }, [])
-
   return (
-    <div id="container" className="mx-auto w-[800px] h-[500px]"></div>
+    <div>
+      <div></div>
+
+      <div id="main"></div>
+    </div>
   )
 }
 
