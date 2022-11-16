@@ -1,14 +1,14 @@
-import React from 'react'
-import Pixi from './views/Pixi'
-
+import React, { useEffect } from 'react'
+import './App.css'
+import { init } from './core'
 function App () {
 
-  return (
-    <div>
-      <div></div>
+  useEffect(() => {
+    init(window.innerWidth, window.innerHeight, document.querySelector('#main')!)
+  }, [])
 
-      <div id="main"></div>
-    </div>
+  return (
+    <div id="main"></div>
   )
 }
 
