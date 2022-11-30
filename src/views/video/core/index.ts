@@ -1,9 +1,21 @@
-import { AmbientLight, BackSide, Color, DoubleSide, LinearFilter, Mesh, MeshBasicMaterial, MeshLambertMaterial, PerspectiveCamera, RGBFormat, Scene, SphereGeometry, TextureLoader, Vector3, VideoTexture, WebGLRenderer } from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { AmbientLight, Color, LinearFilter, Mesh, MeshBasicMaterial, PerspectiveCamera, Scene, SphereGeometry, VideoTexture, WebGLRenderer } from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import Stats from 'stats.js';
 
-export function init(root:HTMLElement, width?: number, height?:number) {
-  width = width || window.innerWidth
-  height = height || window.innerHeight
+function IsPC(){  
+  const userAgentInfo = navigator.userAgent;
+  const Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];  
+  let flag = true;  
+  for (let v = 0; v < Agents.length; v++) {  
+      if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
+  }  
+  return flag;  
+}
+
+export const isPC = IsPC();
+
+
+export function init(root:HTMLElement, width: number, height:number) {
   /**
    * 创建一个场景
    */
@@ -18,7 +30,9 @@ export function init(root:HTMLElement, width?: number, height?:number) {
   const camera = new PerspectiveCamera(90, width / height, 1, 2000)
   camera.position.set(1,0,0)
   camera.aspect = width / height
-
+  if (!IsPC()) {
+    camera.up.set(0,0,1)
+  }
   camera.updateProjectionMatrix()
 
   /**
@@ -31,15 +45,8 @@ export function init(root:HTMLElement, width?: number, height?:number) {
   renderer.setPixelRatio(window.devicePixelRatio);
 
   root.appendChild(renderer.domElement)
-
-  // window.addEventListener('resize', () => {
-  //   renderer.setSize(window.innerWidth, window.innerHeight)
-  //   camera.aspect = window.innerWidth / window.innerHeight
-  //   camera.updateProjectionMatrix()
-  // })
-
-  
-
+  const stats = new Stats();
+	document.body.appendChild( stats.dom );
   /**
    * 控制器
    * 
@@ -62,7 +69,6 @@ export function init(root:HTMLElement, width?: number, height?:number) {
   video.play()
   const texture = new VideoTexture( video )
   texture.minFilter = LinearFilter;
-  texture.format = RGBFormat;
   texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
 
   const geometry = new SphereGeometry(300, 90, 90) // 生成一个几何体
@@ -77,15 +83,9 @@ export function init(root:HTMLElement, width?: number, height?:number) {
   run()
 
   function run() {
+    stats.update();
     renderer.render(scene, camera)
     controls.update()
     requestAnimationFrame(run)
-  }
-
-
-  return function(width, height) {
-    renderer.setSize(width,height)
-    camera.aspect = width /height
-    camera.updateProjectionMatrix()
   }
 }

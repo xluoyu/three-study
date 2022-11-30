@@ -1,6 +1,10 @@
 #main{
-  width:500px;
-  height:300px;
+  width:100vw;
+  height:100vh;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background-color: #000
 }
 .container{
   display: flex;
@@ -27,4 +31,11 @@
   font-size: 14px;
   border-radius: 50%;
   background: #ff7904;
+}
+.fullBtn{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  padding: 6px 10px;
 }
