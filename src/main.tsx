@@ -5,9 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './index.css'
 import 'uno.css'
-// import VConsole from 'vconsole';
-
-// new VConsole();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   // <React.StrictMode>
