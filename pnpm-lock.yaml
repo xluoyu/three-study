@@ -4,6 +4,7 @@ specifiers:
   '@tanstack/react-query': ^4.12.0
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
+  '@types/stats.js': ^0.17.0
   '@types/three': ^0.144.0
   '@typescript-eslint/eslint-plugin': ^5.40.1
   '@typescript-eslint/parser': ^5.40.1
@@ -41,6 +42,7 @@ dependencies:
 devDependencies:
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
+  '@types/stats.js': 0.17.0
   '@types/three': 0.144.0
   '@typescript-eslint/eslint-plugin': 5.40.1_a28c3c0d332041765cb07f6bda2cfee6
   '@typescript-eslint/parser': 5.40.1_eslint@8.25.0+typescript@4.8.4
@@ -606,6 +608,10 @@ packages:
 
   /@types/semver/7.3.12:
     resolution: {integrity: sha512-WwA1MW0++RfXmCr12xeYOOC5baSC9mSb0ZqCquFzKhcoF4TvHu5MKOuXsncgZcpVFhB1pXd5hZmM0ryAoCp12A==}
+    dev: true
+
+  /@types/stats.js/0.17.0:
+    resolution: {integrity: sha512-9w+a7bR8PeB0dCT/HBULU2fMqf6BAzvKbxFboYhmDtDkKPiyXYbjoe2auwsXlEFI7CFNMF1dCv3dFH5Poy9R1w==}
     dev: true
 
   /@types/three/0.144.0:

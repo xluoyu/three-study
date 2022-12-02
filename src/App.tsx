@@ -5,6 +5,7 @@ import Home from './views'
 
 const Car = lazy(() => import('./views/car'))
 const Video = lazy(() => import('./views/video'))
+const Physics = lazy(() => import('./views/physics'))
 
 function Loading() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/car" element={<Car />}></Route>
           <Route path="/video" element={<Video />}></Route>
+          <Route path="/physics" element={<Physics />}></Route>
       </Routes>
     </Suspense>
   )

@@ -13,7 +13,8 @@ const LinkBox: FC<{link: string}> = (props) => {
 function Home() {
   const linkList = [
     'car',
-    'video'
+    'video',
+    'physics'
   ];
 
   return (
