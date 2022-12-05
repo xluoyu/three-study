@@ -123,6 +123,44 @@ function loadCollider(scene: THREE.Scene) {
 }
 
 
+function createSphere() {
+  /**
+   * .lerp ( color : Color, alpha : Float ) : this
+color - 用于收敛的颜色。
+alpha - 介于0到1的数字。
+
+将该颜色的RGB值线性插值到传入参数的RGB值。alpha参数可以被认为是两种颜色之间的比例值，其中0是当前颜色和1.0是第一个参数的颜色。
+   */
+  const color = new THREE.Color(0x263238 / 2).lerp(new THREE.Color(0xffffff), Math.random() * 0.5 + 0.5);
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(), // 球几何体
+    new THREE.MeshStandardMaterial({color}) // 网络材质
+  )
+  
+  return sphere
+
+}
+
+function addEvent(scene: THREE.Scene, element: HTMLCanvasElement) {
+	let x = 0, y = 0;
+
+  element.addEventListener('pointerdown', e => {
+		x = e.clientX
+		y = e.clientY
+	})
+
+	element.addEventListener('pointerup', e => {
+		const totalDelta = Math.abs( e.clientX - x) + Math.abs( e.clientY - y)
+		if (totalDelta > 2) return
+
+		const sphere = createSphere();
+
+		
+		scene.add( sphere )
+	})
+
+}
+
 
 export function init(width: number, height: number, el: HTMLElement) {
   const {
@@ -133,6 +171,8 @@ export function init(width: number, height: number, el: HTMLElement) {
   } = createWork(width, height, el)
 
   loadCollider(scene)
+
+  addEvent(scene, renderer.domElement)
 
   function render() {
     stats.update()
