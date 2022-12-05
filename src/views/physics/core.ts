@@ -67,7 +67,23 @@ function createWork(width: number, height: number, el: HTMLElement) {
 function loadCollider(scene: THREE.Scene) {
   new GLTFLoader().load('/assets/physics/scene.gltf', res => {
     const model = res.scene
-    model.scale.setScalar(0.05)
+    model.scale.setScalar(0.05) // 缩放一下，模型有点大
+
+    // 添加一些光源
+
+    const pointLight = new THREE.PointLight(0x00ffff, 1, 8)
+		// pointLight.distance = 7;
+    pointLight.position.set(-100, -40, 100)
+    model.add( pointLight )
+
+    const porchLight = new THREE.PointLight(0xffdd66, 5, 15)
+    porchLight.position.set(80, 90, 150)
+    porchLight.shadow.normalBias = 1e-2;
+		porchLight.shadow.bias = - 1e-3;
+		porchLight.shadow.mapSize.setScalar( 1024 );
+		porchLight.castShadow = true; // 对象是否被渲染到阴影贴图中
+
+    model.add(porchLight)
 
     const geometries:THREE.BufferGeometry[]  = []; 
 		model.updateMatrixWorld( true );
@@ -85,16 +101,23 @@ function loadCollider(scene: THREE.Scene) {
         
 				geometries.push(cloned)
       }
+
+      if (c.material) { // GLTFMeshStandardSGMaterial
+        c.castShadow = true; // 对象是否被渲染到阴影贴图中
+				c.receiveShadow = true; // 材质是否接收阴影
+				c.material.shadowSide = 2;
+        // console.log(c)
+      }
     })
 
-		const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(geometries)
+		// const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(geometries)
 
-		const collider = new THREE.Mesh( mergedGeometry );
-		collider.material.wireframe = true;
-		collider.material.opacity = 0.5;
-		collider.material.transparent = true;
+		// const collider = new THREE.Mesh( mergedGeometry );
+		// collider.material.wireframe = true;
+		// collider.material.opacity = 0.5;
+		// collider.material.transparent = true;
 
-		scene.add( collider );
+		// scene.add( collider );
     scene.add( model )
   })
 }
