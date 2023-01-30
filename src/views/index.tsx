@@ -14,7 +14,8 @@ function Home() {
   const linkList = [
     'car',
     'video',
-    'physics'
+    'physics',
+    'fps'
   ];
 
   return (
